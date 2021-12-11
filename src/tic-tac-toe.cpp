@@ -41,7 +41,7 @@ bool Board::operator==(const Board& other) const {
 }
 
 bool Board::is_full() const {
-  for (auto p : board) {
+  for (auto p = &board[0][0]; p != &board[0][0] + 9; p++) {
     if (*p == Player::None) {
       return false;
     }
@@ -55,6 +55,20 @@ Move::Move(Player player, int row, int col)
     , col(col) {
   assert(row >= 0 && row < 3);
   assert(col >= 0 && col < 3);
+}
+
+Player opponent(Player player) {
+  switch (player) {
+    case Player::X:
+      return Player::O;
+      break;
+    case Player::O:
+      return Player::X;
+      break;
+    default:
+      return Player::None;
+      break;
+  }
 }
 
 bool is_win(const Board* board, Player player) {
@@ -148,4 +162,12 @@ std::ostream& operator<<(std::ostream& os, const Board* board) {
 
 std::ostream& operator<<(std::ostream& os, const Board& board) {
   return os << &board;
+}
+
+void print(const Board& board) {
+  std::cout << board;
+}
+
+void print(const Board* board) {
+  std::cout << board;
 }

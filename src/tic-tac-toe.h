@@ -35,6 +35,8 @@ struct Move {
       : Move(player, index / 3, index % 3) { }
 };
 
+Player opponent(Player player);
+
 // check if the given player has won the game
 bool is_win(const Board* board, Player player);
 // check if the game is over
@@ -50,3 +52,6 @@ bool is_valid_move(const Board* board, int row, int col);
 std::ostream& operator<<(std::ostream& os, Player player);
 std::ostream& operator<<(std::ostream& os, const Board* board);
 std::ostream& operator<<(std::ostream& os, const Board& board);
+
+void print(const Board& board);
+void print(const Board* board);
